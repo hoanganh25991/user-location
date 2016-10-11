@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Simple Map</title>
+	<meta name="viewport" content="initial-scale=1.0">
+	<meta charset="utf-8">
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		
+		#map {
+			height: 100%;
+		}
+	</style>
+	</head>
+<body>
+<div id="map"></div>
+<script>
+	let em = (function(){
+		let em = this;
+		let listeners = [];
+		
+		em.fire = function(status, pos){
+			let a = listeners.filter((lis)=>{
+				return list.status == status;
+			})
+
+			a.forEach((val)=>{
+				val.exec(pos);
+			});
+		};
+
+		em.add = function(lis){
+			listeners.push(lis);
+		};
+
+		return em;
+	})();
+	em.add({
+		status: 'getPos',
+		exec(pos){
+			let map = new google.maps.Map(document.querySelector('#map'), {
+				center: {lat: pos.coords.latitude, lng: pos.coords.longitude},
+				zoom: 8
+			});
+		}
+	});
+
+	navigator.geolocation.getCurrentPosition((pos)=>{
+		em.fire('getPos', pos);
+	});
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFavoG4NG0EmnCsVajCXVUF06x94fedcA" async defer></script>
+</body>
+</html>
