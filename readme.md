@@ -1,5 +1,8 @@
-#navigator
+#Navigator
 Google Chrome API can get user location by
 
 	navigator.geolocation.getCurrentPosition(callbackSuccess, calbackError);
-so cool
+So cool ᕕ( ᐛ )ᕗ
+
+##Review
+[Demo](https://tinker.press/user-location)
