@@ -42,9 +42,16 @@
 	em.add({
 		status: 'getPos',
 		exec(pos){
+			let myLatLng = {lat: pos.coords.latitude, lng: pos.coords.longitude};
 			let map = new google.maps.Map(document.querySelector('#map'), {
-				center: {lat: pos.coords.latitude, lng: pos.coords.longitude},
+				center: myLatLng,
 				zoom: 17
+			});
+
+			var marker = new google.maps.Marker({
+				position: myLatLng,
+				map: map,
+				title: 'Hello there!'
 			});
 		}
 	});
